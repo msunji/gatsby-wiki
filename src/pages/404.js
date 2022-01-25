@@ -1,7 +1,15 @@
 import * as React from 'react';
-// markup
+import Layout from '../components/Layout';
+
 const NotFoundPage = () => {
-  return <main>404</main>;
+  return (
+    <Layout>
+      <article className="prose">
+        <h1>Whoops.</h1>
+        <p>It looks like you've reached a page that doesn't exist.</p>
+      </article>
+    </Layout>
+  );
 };
 
 export default NotFoundPage;

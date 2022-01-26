@@ -23,5 +23,13 @@ module.exports = {
       },
       __key: 'pages',
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'notes',
+        path: './src/notes/',
+      },
+      __key: 'notes',
+    },
   ],
 };

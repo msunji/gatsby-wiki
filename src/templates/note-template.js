@@ -3,17 +3,22 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 
 const NoteTemplate = ({ data }) => {
-  console.log(data);
   return (
     <Layout>
-      <p>test</p>
+      <div className="container md px-4">
+        <article className="prose">
+          <div>
+            <h1>{data.mdx.frontmatter.title}</h1>
+          </div>
+        </article>
+      </div>
     </Layout>
   );
 };
 
 export const query = graphql`
-  query ($id: String) {
-    mdx(id: { eq: $id }) {
+  query ($slug: String) {
+    mdx(slug: { eq: $slug }) {
       id
       frontmatter {
         dateUpdated

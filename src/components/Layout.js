@@ -3,9 +3,11 @@ import Sidebar from './Sidebar';
 
 const Layout = ({ children }) => {
   return (
-    <main className="grid md:grid-cols-main gap-x-16">
+    <main className="flex md:gap-x-10">
       <Sidebar />
-      <div className="pt-16">{children}</div>
+      <div className="pt-28 pb-24 md:pt-20 container mx-auto w-11/12">
+        {children}
+      </div>
     </main>
   );
 };

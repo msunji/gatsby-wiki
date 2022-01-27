@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { ChevronRight } from './ChevronRight';
+import ChevronRight from './ChevronRight';
+import Cross from './Cross';
+
+const MobileNav = ({ handleOpen }) => {
+  return (
+    <div className="py-5 px-6 flex md:hidden justify-end w-full border-b border-slate-200 fixed  backdrop-blur-sm bg-white/30">
+      <button className="space-y-1.5 md:hidden" onClick={handleOpen}>
+        <div className="block w-7 h-0.5 bg-slate-600" />
+        <div className="block w-7 h-0.5 bg-slate-600" />
+      </button>
+    </div>
+  );
+};
 
 const Category = ({ edges, fieldValue }) => {
   const [openCategory, setOpenCategory] = useState(false);
-  console.log(openCategory);
   return (
     <div key={fieldValue} className="mb-1">
       <p
-        className="cursor-pointer flex justify-between items-center py-1 px-2 font-semibold hover:bg-slate-300"
+        className="cursor-pointer rounded flex justify-between items-center py-1 px-2 hover:bg-slate-300"
         onClick={() => setOpenCategory(!openCategory)}
       >
         <span>{fieldValue[0].toUpperCase() + fieldValue.slice(1)}</span>
@@ -39,6 +50,10 @@ const Category = ({ edges, fieldValue }) => {
 const Sidebar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  const handleOpen = () => {
+    setOpenDrawer(!openDrawer);
+  };
+
   const data = useStaticQuery(graphql`
     query NotesQuery {
       allFile(filter: { sourceInstanceName: { eq: "notes" } }) {
@@ -61,20 +76,40 @@ const Sidebar = () => {
   `);
 
   return (
-    <nav className="h-full min-h-screen bg-slate-100 px-5 py-16 border-r border-solid border-slate-300 divide-y divide-solid divide-slate-300 text-slate-500">
-      <div>
-        <Link to="/" className="pl-2">
-          About
-        </Link>
-      </div>
-      <div>
-        {data.allFile.group.map(({ edges, fieldValue }) => {
-          return (
-            <Category key={fieldValue} edges={edges} fieldValue={fieldValue} />
-          );
-        })}
-      </div>
-    </nav>
+    <div>
+      <MobileNav isOpen={openDrawer} handleOpen={handleOpen} />
+      <nav
+        className={`fixed z-20 min-h-full h-full h-screen w-80 bg-slate-100 px-6 text-slate-500 overflow-y-auto md:translate-x-0 md:static transition-transform ${
+          openDrawer ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="py-8 md:text-m">
+          <div className="w-full flex justify-end">
+            <button
+              className="space-y-1.5 md:hidden"
+              onClick={() => setOpenDrawer(!openDrawer)}
+            >
+              <Cross />
+            </button>
+          </div>
+
+          <div className="py-1 px-2 border-b border-slate-300 mb-2">
+            <Link to="/">About</Link>
+          </div>
+          <div>
+            {data.allFile.group.map(({ edges, fieldValue }) => {
+              return (
+                <Category
+                  key={fieldValue}
+                  edges={edges}
+                  fieldValue={fieldValue}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 

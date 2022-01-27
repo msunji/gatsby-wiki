@@ -94,7 +94,9 @@ const Sidebar = () => {
           </div>
 
           <div className="py-1 px-2 border-b border-slate-300 mb-2">
-            <Link to="/">About</Link>
+            <Link to="/" className="hover:text-slate-400">
+              About
+            </Link>
           </div>
           <div>
             {data.allFile.group.map(({ edges, fieldValue }) => {

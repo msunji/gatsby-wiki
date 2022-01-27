@@ -2,8 +2,42 @@ import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { ChevronRight } from './ChevronRight';
 
+const Category = ({ edges, fieldValue }) => {
+  const [openCategory, setOpenCategory] = useState(false);
+  console.log(openCategory);
+  return (
+    <div key={fieldValue} className="mb-1">
+      <p
+        className="cursor-pointer flex justify-between items-center py-1 px-2 font-semibold hover:bg-slate-300"
+        onClick={() => setOpenCategory(!openCategory)}
+      >
+        <span>{fieldValue[0].toUpperCase() + fieldValue.slice(1)}</span>
+        <span
+          className={`transition-transform ${
+            openCategory ? '-rotate-90' : 'rotate-90'
+          }`}
+        >
+          <ChevronRight />
+        </span>
+      </p>
+      <ul className={`pl-6 ${openCategory ? 'block' : 'hidden'}`}>
+        {edges.map(({ node }) => (
+          <li className="py-1" key={node.id}>
+            <Link
+              className="hover:text-slate-400"
+              to={`/${node.childrenMdx[0].slug}`}
+            >
+              {node.childrenMdx[0].frontmatter.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const Sidebar = () => {
-  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const data = useStaticQuery(graphql`
     query NotesQuery {
@@ -36,24 +70,7 @@ const Sidebar = () => {
       <div>
         {data.allFile.group.map(({ edges, fieldValue }) => {
           return (
-            <div key={fieldValue} className="mb-1">
-              <p className="flex justify-between py-1 pl-2 font-semibold hover:bg-slate-300">
-                <span>{fieldValue[0].toUpperCase() + fieldValue.slice(1)}</span>
-                <ChevronRight className="text-sm" />
-              </p>
-              <ul className="pl-6">
-                {edges.map(({ node }) => (
-                  <li className="py-1" key={node.id}>
-                    <Link
-                      className="hover:text-slate-400"
-                      to={`/${node.childrenMdx[0].slug}`}
-                    >
-                      {node.childrenMdx[0].frontmatter.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Category key={fieldValue} edges={edges} fieldValue={fieldValue} />
           );
         })}
       </div>

@@ -3,9 +3,9 @@ import Sidebar from './Sidebar';
 
 const Layout = ({ children }) => {
   return (
-    <main className="flex md:gap-x-10">
+    <main className="min-h-screen md:gap-x-10 md:flex">
       <Sidebar />
-      <div className="pt-28 pb-24 md:pt-20 container mx-auto w-11/12">
+      <div className="pt-28 pb-24 md:pt-20 container mx-auto w-11/12 h-full">
         {children}
       </div>
     </main>

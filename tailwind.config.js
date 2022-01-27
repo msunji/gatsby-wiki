@@ -8,6 +8,7 @@ module.exports = {
       current: 'currentColor',
       slate: colors.slate,
       cyan: colors.cyan,
+      white: colors.white,
     },
     extend: {
       gridTemplateColumns: {

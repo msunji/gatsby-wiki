@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useOutsideClick } from '../utils/useOutsideClick';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import ChevronRight from './ChevronRight';
 import Cross from './Cross';
@@ -14,7 +15,7 @@ const MobileNav = ({ handleOpen }) => {
   );
 };
 
-const Category = ({ edges, fieldValue }) => {
+const Category = ({ edges, fieldValue, handleDrawer }) => {
   const [openCategory, setOpenCategory] = useState(false);
   return (
     <div key={fieldValue} className="mb-1">
@@ -33,14 +34,14 @@ const Category = ({ edges, fieldValue }) => {
       </p>
       <ul className={`pl-6 ${openCategory ? 'block' : 'hidden'}`}>
         {edges.map(({ node }) => (
-          <li className="py-1" key={node.id}>
-            <Link
-              className="hover:text-slate-400"
-              to={`/${node.childrenMdx[0].slug}`}
-            >
-              {node.childrenMdx[0].frontmatter.title}
-            </Link>
-          </li>
+          <Link
+            className="hover:text-slate-400"
+            key={node.id}
+            to={`/${node.childrenMdx[0].slug}`}
+            onClick={handleDrawer}
+          >
+            <li className="py-1">{node.childrenMdx[0].frontmatter.title}</li>
+          </Link>
         ))}
       </ul>
     </div>
@@ -48,10 +49,14 @@ const Category = ({ edges, fieldValue }) => {
 };
 
 const Sidebar = () => {
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const drawerRef = useRef(null);
+  const [openDrawer, setOpenDrawer] = useOutsideClick(drawerRef, false);
 
   const handleOpen = () => {
     setOpenDrawer(!openDrawer);
+  };
+  const handleCloseDrawer = () => {
+    setOpenDrawer(false);
   };
 
   const data = useStaticQuery(graphql`
@@ -79,6 +84,7 @@ const Sidebar = () => {
     <div>
       <MobileNav isOpen={openDrawer} handleOpen={handleOpen} />
       <nav
+        ref={drawerRef}
         className={`fixed z-20 min-h-full h-full h-screen w-80 bg-slate-100 px-6 text-slate-500 overflow-y-auto md:translate-x-0 md:static transition-transform ${
           openDrawer ? 'translate-x-0' : '-translate-x-full'
         }`}
@@ -105,6 +111,7 @@ const Sidebar = () => {
                   key={fieldValue}
                   edges={edges}
                   fieldValue={fieldValue}
+                  handleDrawer={handleCloseDrawer}
                 />
               );
             })}

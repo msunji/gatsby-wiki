@@ -8,7 +8,7 @@ const NoteTemplate = ({ data }) => {
   return (
     <Layout>
       <div className="container md px-4">
-        <article className="prose prose-slate prose-h1:mb-1 prose-img:rounded-md prose-code:text-cyan-500 prose-a:text-cyan-500">
+        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-normal prose-li:leading-normal prose-img:rounded-md prose-code:text-cyan-500 prose-a:text-cyan-500">
           <div>
             <h1>{data.mdx.frontmatter.title}</h1>
             <p className="mb-0 text-sm">

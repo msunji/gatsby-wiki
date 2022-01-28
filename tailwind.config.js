@@ -9,6 +9,7 @@ module.exports = {
       slate: colors.slate,
       red: colors.red,
       white: colors.white,
+      indigo: colors.indigo,
     },
 
     extend: {
@@ -25,8 +26,12 @@ module.exports = {
               overflowX: 'visible',
             },
             code: {
-              padding: '0.1rem',
-              borderRadius: '0.85em',
+              borderRadius: '0.3em',
+              paddingLeft: '0.6rem',
+              paddingRight: '0.6rem',
+              paddingTop: '0.3rem',
+              paddingBottom: '0.3rem',
+              color: colors.indigo[700],
               backgroundColor: colors.slate[100],
               '&::before': {
                 content: 'none !important',

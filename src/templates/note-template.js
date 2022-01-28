@@ -1,14 +1,48 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
+
+const CodeBlock = ({ children, className }) => {
+  const language = /language-(\w+)/.exec(children.props.className || '');
+  return (
+    <Highlight
+      {...defaultProps}
+      code={children.props.children}
+      language={language[1]}
+      theme={shadesOfPurple}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre className={className} style={style}>
+          <span className="relative -top-3 uppercase bg-red-500 text-white font-semibold tracking-widest px-4 py-1">
+            {language[1]}
+          </span>
+          {tokens.map((line, i) => (
+            <div {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
+  );
+};
+
+const components = {
+  pre: CodeBlock,
+};
 
 const NoteTemplate = ({ data }) => {
   console.log(data);
   return (
     <Layout>
       <div className="container md px-4">
-        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-normal prose-li:leading-normal prose-img:rounded-md prose-code:text-cyan-500 prose-a:text-cyan-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
+        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-normal prose-li:leading-normal prose-img:rounded-md prose-a:text-cyan-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
           <div>
             <h1>{data.mdx.frontmatter.title}</h1>
             <p className="mb-0 text-sm">
@@ -21,7 +55,9 @@ const NoteTemplate = ({ data }) => {
             </p>
           </div>
           <hr />
-          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          <MDXProvider components={components}>
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </MDXProvider>
         </article>
       </div>
     </Layout>

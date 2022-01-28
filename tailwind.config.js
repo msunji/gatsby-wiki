@@ -7,7 +7,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       slate: colors.slate,
-      cyan: colors.cyan,
+      red: colors.red,
       white: colors.white,
     },
 
@@ -18,8 +18,16 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            pre: false,
+            pre: {
+              paddingTop: '0',
+              marginTop: '3rem',
+              marginBottom: '3rem',
+              overflowX: 'visible',
+            },
             code: {
+              padding: '0.1rem',
+              borderRadius: '0.85em',
+              backgroundColor: colors.slate[100],
               '&::before': {
                 content: 'none !important',
               },
@@ -32,5 +40,6 @@ module.exports = {
       },
     },
   },
+  important: 'html',
   plugins: [require('@tailwindcss/typography')],
 };

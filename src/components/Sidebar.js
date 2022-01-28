@@ -20,7 +20,7 @@ const Category = ({ edges, fieldValue, handleDrawer }) => {
   return (
     <div key={fieldValue} className="mb-1">
       <button
-        className="cursor-pointer rounded flex justify-between items-center py-1 px-2 hover:bg-slate-300"
+        className="cursor-pointer rounded flex justify-between items-center py-1 px-2 hover:bg-slate-300 w-full"
         onClick={() => setOpenCategory(!openCategory)}
       >
         <span>{fieldValue[0].toUpperCase() + fieldValue.slice(1)}</span>

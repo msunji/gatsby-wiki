@@ -19,7 +19,7 @@ const Category = ({ edges, fieldValue, handleDrawer }) => {
   const [openCategory, setOpenCategory] = useState(false);
   return (
     <div key={fieldValue} className="mb-1">
-      <p
+      <button
         className="cursor-pointer rounded flex justify-between items-center py-1 px-2 hover:bg-slate-300"
         onClick={() => setOpenCategory(!openCategory)}
       >
@@ -31,7 +31,7 @@ const Category = ({ edges, fieldValue, handleDrawer }) => {
         >
           <ChevronRight />
         </span>
-      </p>
+      </button>
       <ul className={`pl-6 ${openCategory ? 'block' : 'hidden'}`}>
         {edges.map(({ node }) => (
           <Link

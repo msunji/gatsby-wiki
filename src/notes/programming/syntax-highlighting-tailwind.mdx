@@ -1,0 +1,113 @@
+---
+title: 'Setting syntax highlighting with Tailwind and Gatsby'
+datePosted: '2022-01-28'
+dateUpdated: '2022-01-28'
+---
+
+Since I wanted to use my personal wiki to compile programming notes as well, I figured it would be nice to have code blocks styled to make them a little easier to read.
+
+## Tools
+
+- Tailwind CSS and the official [Typography plugin](https://tailwindcss.com/docs/typography-plugin)
+- Gatsby
+- MDX
+- [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer)
+
+## Rendering Markdown in Gatsby
+
+I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but syntax highlighting isn't available at the time of writing this. So here's how to get that done.
+
+My personal wiki notes are rendered from Markdown files. Gatsby provides [plugins](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/) for this.
+
+Since I'll be getting the contents of my Markdown files through a GraphQL page query, I'll need to use the `MDXRenderer` component. With a page query, it'll look something like this:
+
+```jsx
+// note-template.js
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import Layout from '../components/Layout';
+
+const NoteTemplate = ({ data }) => {
+  return (
+    <Layout>
+      <div className="container md px-4">
+        <article className="prose prose-slate">
+          <div>/* Note title, dates, etc. */</div>
+          <hr />
+          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        </article>
+      </div>
+    </Layout>
+  );
+};
+```
+
+Adding the `prose` class in the parent `article` element provides some styling for the code blocks rendered by `MDXRenderer`, but do note that it really isn't anything too fancy.
+
+So at this point, that got me thinking about making a custom component for code blocks. After the first couple of tries, I realised that you couldn't actually pass custom components to `MDXRenderer` (unlike `MDXProvider`). This can be sorted out rather easily. You'll basically need to wrap your `MDXRenderer` component with a `MDXProvider` component that you'll pass your custom components too. So the revised note template code ends up looking a bit like this:
+
+```jsx
+// note-template.js
+import { MDXProvider } from '@mdx-js/react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+
+const NoteTemplate = ({ data }) => {
+  return (
+    <Layout>
+      <div className="container md px-4">
+        <article className="prose prose-slate">
+          <div>/* Note title, dates, etc. */</div>
+          <hr />
+          <MDXProvider components={components}>
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </MDXProvider>
+        </article>
+      </div>
+    </Layout>
+  );
+};
+```
+
+## Making the Syntax Highlighting Component
+
+TL;DR - Here's what I did to get this working:
+
+1. Using [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer), make a custom syntax highlighting component which you'll pass to `MDXProvider`
+2. Modify `tailwind.config.js` to add some extra styling to code blocks (`pre`) and inline code (`code`)
+
+I've also added a tiny label that sits right on top of the code block and indicates what language the code's been written in.
+
+```jsx
+// Code block component
+const CodeBlock = ({ children }) => {
+  const language = /language-(\w+)/.exec(children.props.className || '');
+  return (
+    <Highlight
+      {...defaultProps}
+      code={children.props.children}
+      language={language[1]}
+      theme={shadesOfPurple}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre style={style}>
+          <span className="relative -top-3 uppercase bg-red-500 text-white font-semibold tracking-widest px-4 py-1">
+            {language[1]}
+          </span>
+          {tokens.map((line, i) => (
+            <div {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
+  );
+};
+```
+
+Note: See prism-react-renderer's [usage section](https://github.com/FormidableLabs/prism-react-renderer#usage).
+
+## For Later
+
+- Consider line highlighting?

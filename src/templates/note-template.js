@@ -6,7 +6,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
 
-const CodeBlock = ({ children, className }) => {
+const CodeBlock = ({ children }) => {
   const language = /language-(\w+)/.exec(children.props.className || '');
   return (
     <Highlight
@@ -16,7 +16,7 @@ const CodeBlock = ({ children, className }) => {
       theme={shadesOfPurple}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
+        <pre style={style}>
           <span className="relative -top-3 uppercase bg-red-500 text-white font-semibold tracking-widest px-4 py-1">
             {language[1]}
           </span>
@@ -38,11 +38,10 @@ const components = {
 };
 
 const NoteTemplate = ({ data }) => {
-  console.log(data);
   return (
     <Layout>
       <div className="container md px-4">
-        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-normal prose-li:leading-normal prose-img:rounded-md prose-a:text-cyan-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
+        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-relaxed prose-li:leading-normal prose-img:rounded-md prose-a:text-red-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
           <div>
             <h1>{data.mdx.frontmatter.title}</h1>
             <p className="mb-0 text-sm">
@@ -69,9 +68,9 @@ export const query = graphql`
     mdx(slug: { eq: $slug }) {
       id
       frontmatter {
-        dateUpdated
+        dateUpdated(formatString: "MMM DD, YYYY")
         title
-        datePosted
+        datePosted(formatString: "MMM DD, YYYY")
       }
       slug
       body

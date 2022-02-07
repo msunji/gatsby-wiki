@@ -34,14 +34,15 @@ const Category = ({ edges, fieldValue, handleDrawer }) => {
       </button>
       <ul className={`pl-6 ${openCategory ? 'block' : 'hidden'}`}>
         {edges.map(({ node }) => (
-          <Link
-            className="hover:text-slate-400"
-            key={node.id}
-            to={`/${node.childrenMdx[0].slug}`}
-            onClick={handleDrawer}
-          >
-            <li className="py-1">{node.childrenMdx[0].frontmatter.title}</li>
-          </Link>
+          <li key={node.id} className="py-1 hover:text-slate-400">
+            <Link
+              className="block"
+              to={`/${node.childrenMdx[0].slug}`}
+              onClick={handleDrawer}
+            >
+              {node.childrenMdx[0].frontmatter.title}
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

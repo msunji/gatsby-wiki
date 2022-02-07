@@ -15,7 +15,7 @@ Since I wanted to use my personal wiki to compile programming notes as well, I f
 
 ## Rendering Markdown in Gatsby
 
-I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but syntax highlighting isn't available at the time of writing this. So here's how to get that done.
+I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but syntax highlighting isn't available at the time of writing this. And while the plugin does style your code blocks, it really isn't anything too fancy.
 
 My personal wiki notes are rendered from Markdown files. Gatsby provides [plugins](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/) for this.
 
@@ -41,9 +41,7 @@ const NoteTemplate = ({ data }) => {
 };
 ```
 
-Adding the `prose` class in the parent `article` element provides some styling for the code blocks rendered by `MDXRenderer`, but do note that it really isn't anything too fancy.
-
-So at this point, that got me thinking about making a custom component for code blocks. After the first couple of tries, I realised that you couldn't actually pass custom components to `MDXRenderer` (unlike `MDXProvider`). This can be sorted out rather easily. You'll basically need to wrap your `MDXRenderer` component with a `MDXProvider` component that you'll pass your custom components too. So the revised note template code ends up looking a bit like this:
+So at this point, I started thinking about making a custom component for code blocks. After the first couple of tries, I realised that you couldn't actually pass custom components to `MDXRenderer` (unlike `MDXProvider`). This can be sorted out rather easily. You'll basically need to wrap your `MDXRenderer` component with a `MDXProvider` component that you'll pass your custom components too. The revised note template code ends up looking a bit like this:
 
 ```jsx
 // note-template.js

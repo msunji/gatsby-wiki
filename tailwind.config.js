@@ -32,8 +32,8 @@ module.exports = {
               paddingRight: '0.5rem',
               marginLeft: '0.2rem',
               marginRight: '0.2rem',
-              paddingTop: '0.3rem',
-              paddingBottom: '0.3rem',
+              paddingTop: '0.2em',
+              paddingBottom: '0.2rem',
               color: colors.indigo[700],
               backgroundColor: colors.slate[100],
               '&::before': {

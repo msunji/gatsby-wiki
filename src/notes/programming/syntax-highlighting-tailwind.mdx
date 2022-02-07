@@ -4,7 +4,7 @@ datePosted: '2022-01-28'
 dateUpdated: '2022-01-28'
 ---
 
-Since I wanted to use my personal wiki to compile programming notes as well, I figured it would be nice to have code blocks styled to make them a little easier to read.
+Since I wanted to use my personal wiki to compile programming notes as well, I figured it would be nice to have code blocks styled to make them a little easier to read. (They're also a bit nicer on the eyes, but I digress.)
 
 ## Tools
 
@@ -14,8 +14,6 @@ Since I wanted to use my personal wiki to compile programming notes as well, I f
 - [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer)
 
 ## Rendering Markdown in Gatsby
-
-I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but syntax highlighting isn't available at the time of writing this. And while the plugin does style your code blocks, it really isn't anything too fancy.
 
 My personal wiki notes are rendered from Markdown files. Gatsby provides [plugins](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/) for this.
 
@@ -64,6 +62,8 @@ const NoteTemplate = ({ data }) => {
   );
 };
 ```
+
+Great. With that out of the way, it's time to get my notes prettied up. I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but it really isn't anything too fancy.
 
 ## Making the Syntax Highlighting Component
 

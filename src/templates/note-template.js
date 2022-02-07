@@ -4,7 +4,6 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Layout from '../components/Layout';
 
 const CodeBlock = ({ children }) => {
   const language = /language-(\w+)/.exec(children.props.className || '');
@@ -39,27 +38,25 @@ const components = {
 
 const NoteTemplate = ({ data }) => {
   return (
-    <Layout>
-      <div className="container md px-4">
-        <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-relaxed prose-li:leading-normal prose-img:rounded-md prose-a:text-red-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
-          <div>
-            <h1>{data.mdx.frontmatter.title}</h1>
-            <p className="mb-0 text-sm">
-              <span className="uppercase">Posted:</span>{' '}
-              {data.mdx.frontmatter.datePosted}
-            </p>
-            <p className="mt-0 text-sm">
-              <span className="uppercase">Updated:</span>{' '}
-              {data.mdx.frontmatter.datePosted}
-            </p>
-          </div>
-          <hr />
-          <MDXProvider components={components}>
-            <MDXRenderer>{data.mdx.body}</MDXRenderer>
-          </MDXProvider>
-        </article>
-      </div>
-    </Layout>
+    <div className="container md px-4">
+      <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-relaxed prose-li:leading-normal prose-img:rounded-md prose-a:text-red-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
+        <div>
+          <h1>{data.mdx.frontmatter.title}</h1>
+          <p className="mb-0 text-sm">
+            <span className="uppercase">Posted:</span>{' '}
+            {data.mdx.frontmatter.datePosted}
+          </p>
+          <p className="mt-0 text-sm">
+            <span className="uppercase">Updated:</span>{' '}
+            {data.mdx.frontmatter.dateUpdated}
+          </p>
+        </div>
+        <hr />
+        <MDXProvider components={components}>
+          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        </MDXProvider>
+      </article>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ const Seo = ({ title, description, image, article }) => {
   return (
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
       <meta name="description" content={seo.description} />
-      <link rel="icon" href="https://emojicdn.elk.sh/🍮" />
+      <link rel="icon" href="https://emojicdn.elk.sh/🍰" />
       {seo.title && <meta property="og:title" content={seo.title} />}
       {seo.description && (
         <meta property="og:description" content={seo.description} />

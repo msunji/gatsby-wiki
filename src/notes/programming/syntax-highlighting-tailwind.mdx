@@ -41,7 +41,7 @@ const NoteTemplate = ({ data }) => {
 
 Your note content gets rendered and that's all well and good. So with that out of the way, it's time to get them prettied up. I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled as well, but it really isn't anything too fancy.
 
-At this point, I wanted to have a custom component that provided syntax highlighting for bits of code. Note that you can't pass custom components directly to `MDXRenderer`, so you'll need to wrap it in an `MDXProvider` component which you can pass your custom components to. The revised note template should end up looking a bit like this:
+I wanted a custom component that provided syntax highlighting for bits of code. But since you can't pass custom components directly to `MDXRenderer`, you'll need to wrap it in an `MDXProvider` component which you can then pass your custom components to. The revised note template should end up looking a bit like this:
 
 ```jsx
 // note-template.js
@@ -106,7 +106,7 @@ const CodeBlock = ({ children }) => {
 };
 ```
 
-Here's a breakdown of what's doing on up there:
+Here's a breakdown of what's going on up there:
 
 - prism-react-renderer provides [some detailed info](https://github.com/FormidableLabs/prism-react-renderer#usage) about using the `Highlight` component.
 - Logging the `children` object to console gives you a lot of details about what you'll be passing to the `Highlight` component. For the most part, you'll find everything you need in `props` object.

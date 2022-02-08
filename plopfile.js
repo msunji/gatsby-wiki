@@ -22,7 +22,7 @@ module.exports = function (plop) {
     ],
     actions: [{
       type: 'add',
-      path:'src/notes/{{category}}/{{kebabCase title}}.mdx',
+      path:'src/notes/{{lowerCase category}}/{{kebabCase title}}.mdx',
       templateFile: 'src/templates/note-template.hbs',
     }]
   });

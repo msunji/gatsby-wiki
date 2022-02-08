@@ -39,7 +39,9 @@ const NoteTemplate = ({ data }) => {
 };
 ```
 
-So at this point, I started thinking about making a custom component for code blocks. After the first couple of tries, I realised that you couldn't actually pass custom components to `MDXRenderer` (unlike `MDXProvider`). This can be sorted out rather easily. You'll basically need to wrap your `MDXRenderer` component with a `MDXProvider` component that you'll pass your custom components too. The revised note template code ends up looking a bit like this:
+Your note content gets rendered and that's all well and good. So with that out of the way, it's time to get them prettied up. I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled as well, but it really isn't anything too fancy.
+
+At this point, I wanted to have a custom component that provided syntax highlighting for bits of code. Note that you can't pass custom components directly to `MDXRenderer`, so you'll need to wrap it in an `MDXProvider` component which you can pass your custom components to. The revised note template should end up looking a bit like this:
 
 ```jsx
 // note-template.js
@@ -63,13 +65,13 @@ const NoteTemplate = ({ data }) => {
 };
 ```
 
-Great. With that out of the way, it's time to get my notes prettied up. I opted to go with Tailwind's official Typography plugin to get my notes styled out of the box. It's pretty simple to use and you only need to add the `prose` class to get it working. Code blocks and inline blocks get styled accordingly as well, but it really isn't anything too fancy.
+Now on to the juicy bit.
 
 ## Making the Syntax Highlighting Component
 
 TL;DR - Here's what I did to get this working:
 
-1. Using [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer), make a custom syntax highlighting component which you'll pass to `MDXProvider`
+1. Using [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer), make a custom syntax highlighting component which gets passed to `MDXProvider`
 2. Modify `tailwind.config.js` to add some extra styling to code blocks (`pre`) and inline code (`code`)
 
 I've also added a tiny label that sits right on top of the code block and indicates what language the code's been written in.
@@ -104,7 +106,12 @@ const CodeBlock = ({ children }) => {
 };
 ```
 
-Note: See prism-react-renderer's [usage section](https://github.com/FormidableLabs/prism-react-renderer#usage).
+Here's a breakdown of what's doing on up there:
+
+- prism-react-renderer provides [some detailed info](https://github.com/FormidableLabs/prism-react-renderer#usage) about using the `Highlight` component.
+- Logging the `children` object to console gives you a lot of details about what you'll be passing to the `Highlight` component. For the most part, you'll find everything you need in `props` object.
+- In the `props` object, you'll find your code block content under the `children` property
+- As for information about the language you've specified in your Markdown code block, check the `className` property.
 
 ## For Later
 

@@ -18,7 +18,15 @@ const IndexPage = () => {
           find any of these notes helpful, then that'd make me pretty darn happy
           😊
         </p>
-
+        <h2>Technical Bits</h2>
+        <ul>
+          <li>
+            Built with <a href="https://www.gatsbyjs.com/">Gatsby</a>
+          </li>
+          <li>
+            Favicon from <a href="https://emojicdn.elk.sh/">EMOJICDN</a>
+          </li>
+        </ul>
         <h2>Where to find me</h2>
         <ul>
           <li>

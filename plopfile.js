@@ -16,7 +16,8 @@ module.exports = function (plop) {
       },
       {
         type: 'input',
-        name: 'Date Posted:',
+        name: 'datePosted',
+        message: 'Date posted:',
         default: `${datePosted}`
       }
     ],

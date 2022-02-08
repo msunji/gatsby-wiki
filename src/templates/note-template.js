@@ -1,5 +1,5 @@
 import React from 'react';
-import Seo from '../components/Seo';
+import SeoComponent from '../components/SeoComponent';
 import { graphql } from 'gatsby';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import shadesOfPurple from 'prism-react-renderer/themes/shadesOfPurple';
@@ -40,7 +40,7 @@ const components = {
 const NoteTemplate = ({ data }) => {
   return (
     <>
-      <Seo title={data.mdx.frontmatter.title} />
+      <SeoComponent title={data.mdx.frontmatter.title} />
       <div className="container md px-4">
         <article className="prose prose-slate prose-h1:mb-1 prose-p:leading-relaxed prose-li:leading-normal prose-img:rounded-md prose-a:text-red-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-md prose-blockquote:border prose-blockquote:border-slate-200 prose-hr:my-8">
           <div>

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Seo from '../components/Seo';
+import SeoComponent from '../components/SeoComponent';
 
 const IndexPage = () => {
   return (
     <>
-      <Seo />
+      <SeoComponent />
       <article className="prose">
         <h1>About</h1>
         <p>

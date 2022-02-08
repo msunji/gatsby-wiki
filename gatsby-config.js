@@ -1,8 +1,13 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    title: 'Marge Consunji · Personal Wiki',
+    titleTemplate: '%s',
+    description:
+      'Personal notes on baking, programming, and everything else in between.',
+    url: `http://localhost:8000/`,
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-plugin-mdx',
     'gatsby-transformer-sharp',

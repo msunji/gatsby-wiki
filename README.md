@@ -1,6 +1,8 @@
 # Personal Wiki with Gatsby
 
-![Personal Wiki Project Thumbnail](https://github.com/msunji/gatsby-wiki/blob/main/src/images/gatsby-wiki.png?raw=true)
+<p align="center">
+  <img src="https://github.com/msunji/gatsby-wiki/blob/main/src/images/gatsby-wiki.png?raw=true" alt="Personal wiki thumbnail">
+</p>
 
 In an attempt to do more learning in public this year, I made myself a personal wiki/notebook of sorts. Ideally, I'd like to use these notes for my own personal reference. Having them all in one place, makes it a bit easier for me to find them and read them later down the road (as opposed to looking through a million post-it's I've chucked into my drawer).
 

@@ -21,7 +21,8 @@ const IndexPage = () => {
         <h2>Technical Bits</h2>
         <ul>
           <li>
-            Built with <a href="https://www.gatsbyjs.com/">Gatsby</a>
+            Built with <a href="https://www.gatsbyjs.com/">Gatsby</a> and{' '}
+            <a href="https://tailwindcss.com/">Tailwind CSS</a>
           </li>
           <li>
             Favicon from <a href="https://emojicdn.elk.sh/">EMOJICDN</a>

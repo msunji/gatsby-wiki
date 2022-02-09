@@ -26,3 +26,4 @@ I'm thinking of adding a few more things in the near future:
 - [ ] Custom MDX components
 - [ ] Line highlighting for code blocks
 - [ ] Dark mode
+- [ ] Copy to clipboard for code snippets? Maybe.

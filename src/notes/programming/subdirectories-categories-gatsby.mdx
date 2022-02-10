@@ -1,10 +1,12 @@
 ---
-title: Subdirectories as Categories in Gatsby
+title: Subdirectories as Categories with GraphQL and Gatsby
 datePosted: 2022-02-09
-dateUpdated: 2022-02-09
+dateUpdated: 2022-02-10
 ---
 
-Here's how the notes for this personal wiki are organised:
+For this project, I wanted the `Sidebar` component to reflect the way my Markdown files were organised, like so (apologies for the chickenscratch handwriting):
+
+![Hand drawn draft of file structure](../../images/note-img/subdirectory-category-draft.jpg)
 
 ```text
 notes/
@@ -25,7 +27,9 @@ It's pretty straightforward, and I wanted my notes to be just as easy to access 
 
 Since I needed to pull data into a component and not a page, I used `useStaticQuery` in the `Sidebar` component.
 
-So about that static query. I needed my data to be shaped in such a way that I could iterate through the subdirectories (or categories) in the `notes` directory, and then iterate through the files in each directory. Luckily, Gatsby lets you access your data through GraphQL, which is great, because you get to do things like this:
+So about that static query.
+
+I needed my data to be shaped in such a way that I could iterate through the subdirectories (or categories) in the `notes` directory, and then iterate through the files in each subdirectory. Luckily, Gatsby lets you access your data through GraphQL, which is great, because you get to do things like this:
 
 ```graphql
 {
@@ -98,7 +102,7 @@ This query's output gets returned as JSON and looks a bit like this:
 }
 ```
 
-From here, I can just map through the `group` array, and then map through `edges` to get the file nodes.
+From here, I can map through the `group` array, and then map through `edges` to get the file nodes.
 
 ## Resources
 

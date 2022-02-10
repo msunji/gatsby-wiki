@@ -8,7 +8,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-mdx',
     'gatsby-transformer-sharp',
     'gatsby-plugin-postcss',
     {
@@ -34,6 +33,19 @@ module.exports = {
         path: './src/notes/',
       },
       __key: 'notes',
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1000,
+            },
+          },
+        ],
+      },
     },
   ],
 };

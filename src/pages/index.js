@@ -1,7 +1,12 @@
 import * as React from 'react';
+import { Link, graphql } from 'gatsby';
 import SeoComponent from '../components/SeoComponent';
 
-const IndexPage = () => {
+const IndexPage = ({
+  data: {
+    allMdx: { edges },
+  },
+}) => {
   return (
     <>
       <SeoComponent />
@@ -18,6 +23,22 @@ const IndexPage = () => {
           find any of these notes helpful, then that'd make me pretty darn happy
           😊
         </p>
+
+        <h2>Update Log</h2>
+        <p>Notes that I've recently posted or updated.</p>
+        <ul>
+          {edges.map((edge) => (
+            <li key={edge.node.id}>
+              {edge.node.frontmatter.dateUpdated} ·{' '}
+              <Link to={`${edge.node.slug}`}>
+                {edge.node.frontmatter.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <hr />
+
         <h2>Technical Bits</h2>
         <ul>
           <li>
@@ -42,3 +63,20 @@ const IndexPage = () => {
   );
 };
 export default IndexPage;
+
+export const noteQuery = graphql`
+  query {
+    allMdx(sort: { fields: frontmatter___dateUpdated, order: DESC }, limit: 5) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            dateUpdated(formatString: "MMM DD, YYYY")
+          }
+          slug
+        }
+      }
+    }
+  }
+`;

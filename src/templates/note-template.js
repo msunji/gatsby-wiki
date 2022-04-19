@@ -16,7 +16,6 @@ const components = {
 
 const NoteTemplate = ({ data }) => {
   const { mdx } = data;
-  console.log(mdx.body);
   return (
     <>
       <SeoComponent title={mdx.frontmatter.title} />

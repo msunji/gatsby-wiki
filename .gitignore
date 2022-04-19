@@ -3,4 +3,4 @@ node_modules/
 public
 .vscode/
 .DS_STORE
-./src/notes/.obsidian
+./src/_notes/.obsidian

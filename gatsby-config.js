@@ -30,13 +30,14 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'notes',
-        path: './src/notes/',
+        path: './src/_notes/',
       },
       __key: 'notes',
     },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',

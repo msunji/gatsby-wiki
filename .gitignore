@@ -5,4 +5,4 @@ public
 .DS_STORE
 .env
 .env.local
-./src/_notes/.obsidian
+src/_notes/.obsidian/

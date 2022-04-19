@@ -6,8 +6,9 @@ const LinkRenderer = ({ href, children }) => {
     const [category, route] = href.split('/');
     let parsedRoute = route.replace(/(.md)/g, '').replace(/(%20)/g, '-');
     return <Link to={`/${category}/${parsedRoute}`}>{children}</Link>;
+  } else {
+    return <a href={href}>{children}</a>;
   }
-  return <a>{children}</a>;
 };
 
 export default LinkRenderer;

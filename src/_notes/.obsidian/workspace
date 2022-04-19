@@ -1,0 +1,103 @@
+{
+  "main": {
+    "id": "41b01d5093e96682",
+    "type": "split",
+    "children": [
+      {
+        "id": "dc166080482a9293",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "programming/digital-gardens.md",
+            "mode": "source",
+            "backlinks": true,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ae1e24063dfa78b8",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a4348cd9e063a79",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca197137f381e283",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "ac898106f66a1725",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "92bece49a984c05e",
+    "type": "split",
+    "children": [
+      {
+        "id": "19c49c064147c33d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "27c1cbc68b634280",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "programming/digital-gardens.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "dc166080482a9293",
+  "lastOpenFiles": [
+    "programming/digital-gardens.md",
+    "programming/syntax-highlighting-tailwind.mdx",
+    "cooking/mostly-soy-free.mdx",
+    "programming/test.md",
+    "baking/apple-pie.mdx",
+    "baking/pie-crust.mdx",
+    "programming/making-new-notes-with-plop.mdx",
+    "programming/subdirectories-categories-gatsby.mdx",
+    "languages/learning-through-video-games.mdx"
+  ]
+}

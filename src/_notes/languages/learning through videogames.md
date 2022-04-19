@@ -21,7 +21,7 @@ A bit about how I've learned Japanese. I did formal Japanese lessons for a bit w
 - **...Duolingo**
   - Although the app is built to gamify language learning and encourage you to get on the app daily, I found it to be too slow of a pace for me to learn things. Also what's up with those phrases??
 
-![Seriously, who writes these things?](../../images/languages-img/duolingo.jpeg 'Seriously, who writes these things?')
+![Seriously, who writes these things?](https://res.cloudinary.com/dxzcdb0pm/image/upload/v1650353595/digital-garden/Screenshot_2022-04-19_at_15.32.49_ha7qey.png)
 Source: [Weird Duolingo Phrases](https://wtfduolingo.tumblr.com/)
 
 It goes without saying that if you want to learn something, you have to be pretty consistent with it. Personally, I've not had the best of luck with the methods listed above, as they never really encouraged me to build the momentum to study and review things daily.

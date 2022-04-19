@@ -10,22 +10,21 @@ const IndexPage = ({
   return (
     <>
       <SeoComponent />
-      <article className="prose">
-        <h1>About</h1>
+      <>
+        <h1>Notes from Marge's desk</h1>
         <p>
-          Hey there! This is my personal wiki where you'll find notes I've made
-          for baking, programming, and everything in between. These notes are
-          grouped by category and are updated, well, when they need to be
-          updated, I suppose.
+          Hiya! This is my digital garden where you'll find short- and long-form
+          notes about programming, baking, learning languages, and everything in
+          between. If you're new to the idea of a digital garden, you can read{' '}
+          <Link to="/learning/digital-gardening">this note about it</Link>.
         </p>
         <p>
-          I've mostly made these notes for my own future reference, but if you
-          find any of these notes helpful, then that'd make me pretty darn happy
-          😊
+          But otherwise, tl;dr, it's kind of like a personal knowledge base - a
+          place where you can write about and explore different ideas. It's a
+          place for me to write about things and refine them over time. But also
+          a place for me to keep notes for future me to look back at.
         </p>
-
-        <h2>Update Log</h2>
-        <p>Notes that I've recently posted or updated.</p>
+        <h2>Notes I've written</h2>
         <ul>
           {edges.map((edge) => (
             <li key={edge.node.id}>
@@ -36,29 +35,7 @@ const IndexPage = ({
             </li>
           ))}
         </ul>
-
-        <hr />
-
-        <h2>Technical Bits</h2>
-        <ul>
-          <li>
-            Built with <a href="https://www.gatsbyjs.com/">Gatsby</a> and{' '}
-            <a href="https://tailwindcss.com/">Tailwind CSS</a>
-          </li>
-          <li>
-            Favicon from <a href="https://emojicdn.elk.sh/">EMOJICDN</a>
-          </li>
-        </ul>
-        <h2>Where to find me</h2>
-        <ul>
-          <li>
-            <a href="https://github.com/msunji/">Github</a>
-          </li>
-          <li>
-            <a href="https://www.mconsunji.com/">Portfolio</a>
-          </li>
-        </ul>
-      </article>
+      </>
     </>
   );
 };
@@ -66,7 +43,7 @@ export default IndexPage;
 
 export const noteQuery = graphql`
   query {
-    allMdx(sort: { fields: frontmatter___dateUpdated, order: DESC }, limit: 5) {
+    allMdx(sort: { fields: frontmatter___dateUpdated, order: DESC }) {
       edges {
         node {
           id

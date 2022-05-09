@@ -1,3 +1,5 @@
+let ignoreDraft = process.env.NODE_ENV === 'production' ? [`**/_drafts`] : [];
+
 module.exports = {
   siteMetadata: {
     title: 'Marge Consunji · Personal Wiki',
@@ -31,6 +33,7 @@ module.exports = {
       options: {
         name: 'notes',
         path: './src/_notes/',
+        ignore: ignoreDraft,
       },
       __key: 'notes',
     },

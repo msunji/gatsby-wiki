@@ -24,7 +24,7 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/_notes/{{lowerCase category}}/{{kebabCase title}}.md',
+        path: 'src/_notes/_drafts/{{lowerCase category}}/{{kebabCase title}}.md',
         templateFile: 'src/templates/note-template.hbs',
       },
     ],

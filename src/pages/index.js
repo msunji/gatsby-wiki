@@ -15,8 +15,7 @@ const IndexPage = ({
         <p>
           Hiya! This is my digital garden where you'll find short- and long-form
           notes about programming, baking, learning languages, and everything in
-          between. If you're new to the idea of a digital garden, you can read
-          <Link to="/learning/digital-gardens">this note about it</Link>.
+          between.
         </p>
         <p>
           tl;dr: this is a personal knowledge base where I write about and
